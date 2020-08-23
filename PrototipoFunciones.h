@@ -1,39 +1,51 @@
-#include<string>
+#include <string>
 using namespace std;
 
-class Mensaje{
-	public:
-		void Advertencia();
-};
-class SeleccionMundial{
-	public:
-	int SeleccionCircuito(int);
-	int SeleccionGeneral(int);
-	int SeleccionMonoTri(int);
-};
-class ConvertirUnidades{
-	public:
-	 float ConvertirCaballosWatts(float);
-	 float ConvertirToneladasWatts(float);
-	 float ConvertirWatts(float);
-};
-class IngresarUnidadesGlobales{
-	public:
-		float IngresarUnidades(int,int);
-
-};
-class CalculoDeUnidades{
-	public:
-		float CalculoUnidades(int, int);
-		float MostrarUnidades(int);
-		float CalculoCalibre(float,float,int);
-		float CalculoHilos(int,float);
-		float CalculoTubos(float,int);
-		float CalculoProteccion(int,float);
+class Mensaje
+{
+public:
+	void Advertencia();
 };
 
+class SeleccionMundial
+{
+private:
+	int SeleccionUnidad;
+	int SeleccionAislamiento;
+	int SeleccionTubos;
+	int SeleccionSistemaDistribucion;
+	int SeleccionSistema;
+	int SeleccionCircuitos;
+public:
+	int SeleccionUnidades();
+	int SeleccionCircuito();
+	int SeleccionInstalacion();
+	int SeleccionProteccionAislamiento();
+	int SeleccionGrosorTubo();
+	int SeleccionSubestacion();
+	//Regresar resultado
+	int getSeleccionInstalacion(); //selector sistema
+	int getSeleccionSubestacion(); // SeleccionSistemaDistribucion
+	int getSeleccionProteccionAislamiento(); // SeleccionAislamiento
+	int getSeleccionGrosorTubo(); //SeleccionTubos
+};
 
+class IngresoDeDatos : public SeleccionMundial{
+	public:
+	float IngresarUnidades();
 
+};
 
-
-
+class CalculoDeUnidades : public IngresoDeDatos{
+public:
+	float ConvertirCaballosWatts(float);
+	float ConvertirToneladasWatts(float);
+	float ConvertirWatts(float);
+	float CalculoUnidades();
+	float CalculoCalibre(float, float);
+	float CalculoHilos(float);
+	float CalculoTubos(float);
+	float CalculoProteccion(float);
+	float MostrarUnidades();
+	float MostrarResultados();
+};
